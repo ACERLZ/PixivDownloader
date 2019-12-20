@@ -18,14 +18,13 @@ build_script:
 before_deploy:
   - cd ..
   - python release.py
-  - cd build
 
 deploy:
   provider: GitHub
   description: "PixivDownloader Release"
   auth_token:
     secure: uAMRAuhJjhHbPRvsKDUGYBDrrDPhlj2q1zHICgjSo7K2CSmVMxHreSMJYqer4y2k
-  artifact: /.*\.zip/
+  artifact: build/PixivDownloader-windows.zip
   draft: false
   prerelease: false
   force_update: true

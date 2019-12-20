@@ -7,7 +7,7 @@ if __name__ == "__main__":
         os.chdir("build")
         os.system("windeployqt PixivDownloader.exe")
         os.system("del *.o *.h *.cpp *.stash Makefile")
-        os.system("zip -r PixivDownloader-windows.zip *")
+        os.system("7z a PixivDownloader-windows.zip *")
         print("[+] Release Windows -> Done")
     elif platform.system() == "Darwin":
         print("[+] Release type -> Darwin")
