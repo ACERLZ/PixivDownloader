@@ -1,0 +1,32 @@
+image:
+  - Visual Studio 2017
+
+install:
+  - set QTDIR=C:\Qt\5.13\msvc2017_64\bin
+  - set PYDIR=C:\Python36
+  - set PATH=%QTDIR%;%PYDIR%;%PATH%;
+  - git submodule update --init
+
+init:
+  - C:\"Program Files (x86)"\"Microsoft Visual Studio"\2017\Community\VC\Auxiliary\Build\vcvarsall.bat x86_amd64
+
+build_script:
+  - mkdir build && cd build
+  - qmake ../
+  - nmake
+
+before_deploy:
+  - cd ..
+  - python3 release.py
+
+deploy:
+  provider: GitHub
+  description: "PixivDownloader Release"
+  auth_token:
+    secure: uAMRAuhJjhHbPRvsKDUGYBDrrDPhlj2q1zHICgjSo7K2CSmVMxHreSMJYqer4y2k
+  artifact: /.*\.zip/
+  draft: false
+  prerelease: false
+  on:
+    branch: master
+    APPVEYOR_REPO_TAG: true

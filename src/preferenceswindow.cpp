@@ -23,6 +23,12 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) :
 
     ui->proxyPassword->setEchoMode(QLineEdit::Password);
 
+    ui->method->addItem("1");
+    ui->method->addItem("2");
+    ui->method->addItem("3");
+    ui->method->addItem("4");
+    ui->method->addItem("5");
+
     setText();
     setVersion();
     setBuildDate();
@@ -90,6 +96,7 @@ void PreferencesWindow::on_buttonBox_accepted()
     Settings::authentication = ui->authentication->isChecked();
     Settings::proxyUsername = ui->proxyUsername->text();
     Settings::proxyPassword = ui->proxyPassword->text();
+    Settings::savePathSelection = ui->method->currentIndex() + 1;
 }
 
 void PreferencesWindow::on_aboutQtBtn_clicked()

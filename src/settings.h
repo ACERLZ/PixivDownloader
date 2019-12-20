@@ -11,6 +11,7 @@ public:
     const static QString version;
     const static QDate buildDate;
     const static QTime buildTime;
+    static int savePathSelection;
     static QString method;
     static int id;
     static QString username;

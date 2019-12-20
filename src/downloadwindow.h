@@ -1,3 +1,11 @@
+//
+//  downloadwindow.h
+//  PixivDownloader
+//
+//  Created by TheWanderingCoel on 2019/12/5.
+//  Copyright © 2019 Coel Wu. All rights reserved.
+//
+
 #ifndef DOWNLOADWINDOW_H
 #define DOWNLOADWINDOW_H
 

@@ -76,7 +76,6 @@ QJsonObject AppPixivAPI::user_illusts(int user_id, QString type, QString filter)
     QNetworkReply *reply = req("https://app-api.pixiv.net/v1/user/illusts", "GET", query);
     QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
     QJsonObject obj = jsonResponse.object();
-    qDebug() << obj;
     return obj;
 }
 

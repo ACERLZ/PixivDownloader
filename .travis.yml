@@ -1,0 +1,61 @@
+language: cpp
+
+matrix:
+  include:
+    - os: osx
+      env: BADGE=osx
+    - os: linux
+      dist: bionic
+      sudo: required
+      env: 
+        - BADGE=linux
+        - QT_CI_PACKAGES=qt.qt5.5132.gcc_64,qt.qt5.5132.qtwebengine PATH="$TRAVIS_BUILD_DIR/Qt/5.13.2/gcc_64/bin:${PATH}"
+      addons:
+        apt:
+          packages:
+            - libxkbcommon-x11-0
+            - libgl1-mesa-dev
+      services:
+        - xvfb
+
+before_install:
+  - if [ "$BADGE" = "linux" ]; then
+      sudo apt-get update;
+    fi
+  - if [ "$BADGE" = "osx" ]; then
+      brew update;
+    fi
+
+install:
+  - if [ "$BADGE" = "linux" ]; then    
+      sudo apt-get install libgl-dev python3.6;
+      git clone https://github.com/benlau/qtci.git;
+      source qtci/path.env;
+      install-qt 5.13.2;
+    fi
+  - if [ "$BADGE" = "osx" ]; then    
+      brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/89bf3a54383d884f8b8511c6237325dd5b5ae6ba/Formula/qt.rb --verbose;
+    fi
+
+before_script:
+  - if [ "$BADGE" = "osx" ];   then    export PATH="/usr/local/Cellar/qt/5.13.1/bin:$PATH"; fi
+
+script:
+  - git submodule update --init
+  - mkdir build && cd ./build
+  - qmake ../
+  - make -j8
+
+before_deploy:
+  - cd ..
+  - python3 release.py
+
+deploy:
+  provider: release
+  file: "PixivDownloader-$BADGE.zip"
+  api_key: $GIT_REPO_TOKEN
+  skip_cleanup: true
+  overwrite: true
+  on:
+    branch: master
+    tags: true

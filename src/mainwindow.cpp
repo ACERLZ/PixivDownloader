@@ -163,7 +163,7 @@ void MainWindow::downloadArtworkId()
             MainWindow::change2Table();
         }
     } else if (pageCount == 1) {
-        QJsonObject singleImage = obj.value("meta_single_page").toObject(); // 单张图片Json
+        QJsonObject singleImage = illust.value("meta_single_page").toObject(); // 单张图片Json
         QString artworkUrl = singleImage["original_image_url"].toString(); // 图片链接
         MainWindow::add2Table(authorName, authorId, artworkTitle, artworkId);
         BasePixivAPI::download(artworkUrl, authorName, authorId, artworkTitle, artworkId);

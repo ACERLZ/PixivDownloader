@@ -9,6 +9,15 @@ const QDate Settings::buildDate = QLocale(QLocale::English).toDate(QString(__DAT
 
 const QTime Settings::buildTime = QTime::fromString(__TIME__, "hh:mm:ss");
 
+/*
+ * 1 -> PixivDownloader/作者名 - 作者ID/作品名 - 作品ID/一串随机字符.jpg
+ * 2 -> PixivDownloader/作者名 - 作者ID/作品名 - 作者ID.jpg
+ * 3 -> PixivDownloader/作者名 - 作者ID/一串随机字符.jpg
+ * 4 -> PixivDownloader/作品名 - 作品ID.jpg
+ * 5 -> PixivDownloader/一串随机字符.jpg
+*/
+int Settings::savePathSelection = 1;
+
 QString Settings::method = "bookmarks"; // 下载方式
 
 int Settings::id = 0; // 下载ID

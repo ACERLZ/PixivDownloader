@@ -1,3 +1,11 @@
+//
+//  apppixivapi.h
+//  PixivDownloader
+//
+//  Created by TheWanderingCoel on 2019/12/5.
+//  Copyright © 2019 Coel Wu. All rights reserved.
+//
+
 #ifndef APPPIXIVAPI_H
 #define APPPIXIVAPI_H
 

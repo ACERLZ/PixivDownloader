@@ -78,6 +78,7 @@ bool BasePixivAPI::auth(QString username, QString password, QString refresh_toke
     if (reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() != 200 && reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() != 301 && reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() != 302) {
         if (type == "password") {
             Logger::log("auth() failed! check username and password.", "error");
+            Logger::log(reply->readAll(), "debug");
             return false;
         } else {
             Logger::log("auth() failed! check refresh_token.", "error");
@@ -127,13 +128,14 @@ void BasePixivAPI::download(QString url, QString authorName, int authorId, QStri
     QEventLoop loop;
     connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
     loop.exec();
-    QString path = Paths::downloadLocation + "/" + authorName + " - " +QString::number(authorId) + "/" + artworkTitle + " - " + QString::number(artworkId);
+    QString path = Paths::getSavePath(authorName, authorId, artworkTitle, artworkId);
     QDir dir(path);
     if (!dir.exists()) {
         dir.mkpath(".");
     }
     QByteArray data = reply->readAll();
-    QFile file(path + "/" + url.split("/")[url.split("/").length()-1]);
+    QString fileName = Paths::getSaveFileName(url, artworkTitle, artworkId);
+    QFile file(path + fileName);
     file.open(QIODevice::WriteOnly);
     file.write(data);
     file.close();
