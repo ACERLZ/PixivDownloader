@@ -49,6 +49,7 @@ script:
 before_deploy:
   - cd ..
   - python3 release.py
+  - cd build
 
 deploy:
   provider: release

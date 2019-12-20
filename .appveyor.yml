@@ -17,8 +17,9 @@ build_script:
 
 before_deploy:
   - cd ..
-  - python3 release.py
-
+  - python release.py
+  - cd build
+  
 deploy:
   provider: GitHub
   description: "PixivDownloader Release"
