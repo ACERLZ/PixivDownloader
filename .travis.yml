@@ -6,7 +6,7 @@ matrix:
       osx_image: xcode11
       env: BADGE=osx
     - os: linux
-      dist: bionic
+      dist: xenial
       sudo: required
       env: 
         - BADGE=linux
