@@ -33,8 +33,8 @@ unix:!mac {
 
     shortcutfiles.files = resources/PixivDownloader.desktop
     shortcutfiles.path = $$PREFIX/share/applications/
-    data.files += resources/icons/Icon.png
-    data.path = $$PREFIX/share/hicolor/256x256/PixivDownloader.png
+    data.files += resources/icons/PixivDownloader.png
+    data.path = $$PREFIX/share/hicolor/256x256/
 
     INSTALLS += shortcutfiles
     INSTALLS += data

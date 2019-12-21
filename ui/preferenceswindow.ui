@@ -231,7 +231,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-image: url(:/icons/Icon.png);background-repeat: no-repeat;</string>
+      <string notr="true">background-image: url(:/icons/PixivDownloader.png);background-repeat: no-repeat;</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>

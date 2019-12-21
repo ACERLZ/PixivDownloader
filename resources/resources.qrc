@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>icons/Icon.png</file>
+        <file>icons/PixivDownloader.png</file>
     </qresource>
 </RCC>
