@@ -14,8 +14,6 @@ build_script:
   - mkdir build && cd build
   - qmake ../
   - nmake
-
-before_deploy:
   - cd ..
   - python release.py
 
