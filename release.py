@@ -9,6 +9,7 @@ if __name__ == "__main__":
         shutil.move("./Release/PixivDownloader.exe", "./")
         os.system("windeployqt PixivDownloader.exe")
         os.system("del *.o *.h *.cpp *.stash Makefile")
+        shutil.rmtree("Release", ignore_errors=True)
         os.system("7z a PixivDownloader-windows.zip *")
         print("[+] Release Windows -> Done")
     elif platform.system() == "Darwin":
