@@ -19,12 +19,16 @@ before_deploy:
   - cd ..
   - python release.py
 
+artifacts:
+- path: build/PixivDownloader-windows.zip
+  name: ShadowClash
+
 deploy:
   provider: GitHub
   description: "PixivDownloader Release"
   auth_token:
     secure: uAMRAuhJjhHbPRvsKDUGYBDrrDPhlj2q1zHICgjSo7K2CSmVMxHreSMJYqer4y2k
-  artifact: build\PixivDownloader-windows.zip
+  artifacts: ShadowClash
   draft: false
   prerelease: false
   force_update: true
