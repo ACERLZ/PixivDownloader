@@ -1,5 +1,5 @@
 [Desktop Entry]
-Type=PixivDownloader
+Type=Application
 Name=PixivDownloader
 Comment=An awesome Pixiv image downloader powered by Qt5
 Exec=PixivDownloader
