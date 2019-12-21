@@ -1,10 +1,12 @@
 import os
+import shutil
 import platform
 
 if __name__ == "__main__":
     if platform.system() == "Windows":
-        print("[+] Release type -> Darwin")
+        print("[+] Release type -> Windows")
         os.chdir("build")
+        shutil.move("./Release/PixivDownloader.exe", "./")
         os.system("windeployqt PixivDownloader.exe")
         os.system("del *.o *.h *.cpp *.stash Makefile")
         os.system("7z a PixivDownloader-windows.zip *")

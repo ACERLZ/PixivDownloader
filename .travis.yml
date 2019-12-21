@@ -3,6 +3,7 @@ language: cpp
 matrix:
   include:
     - os: osx
+      osx_image: xcode11
       env: BADGE=osx
     - os: linux
       dist: bionic
@@ -42,9 +43,19 @@ before_script:
 
 script:
   - git submodule update --init
-  - mkdir build && cd ./build
-  - qmake ../
-  - make -j8
+  - mkdir build && cd build
+  - if [ "$BADGE" = "osx" ]; then
+      qmake ../;
+      make -j$(nproc);
+    fi
+  - if [ "$BADGE" = "linux" ]; then
+      wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage";
+      chmod a+x linuxdeployqt-continuous-x86_64.AppImage;
+      qmake CONFIG+=release .. PREFIX=/usr;
+      make -j$(nproc);
+      make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/;
+      ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
+    fi
 
 before_deploy:
   - cd ..
