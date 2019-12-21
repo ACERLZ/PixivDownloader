@@ -8,6 +8,8 @@ QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+TARGET = PixivDownloader
+
 CONFIG += c++11
 CONFIG+=sdk_no_version_check
 
@@ -21,6 +23,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+
+unix:!mac {
+    isEmpty(PREFIX) {
+        PREFIX = /usr/local
+    }
+
+    target.path = $$PREFIX/bin
+
+    shortcutfiles.files = resources/PixivDownloader.desktop
+    shortcutfiles.path = $$PREFIX/share/applications/
+    data.files += resources/icons/Icon.png
+    data.path = $$PREFIX/share/hicolor/256x256/PixivDownloader.png
+
+    INSTALLS += shortcutfiles
+    INSTALLS += data
+}
+
+INSTALLS += target
 
 SOURCES += \
     src/apppixivapi.cpp \

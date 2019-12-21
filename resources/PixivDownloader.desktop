@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=PixivDownloader
+Name=PixivDownloader
+Comment=An awesome Pixiv image downloader powered by Qt5
+Exec=PixivDownloader
+Icon=PixivDownloader
+Categories=Utility;
